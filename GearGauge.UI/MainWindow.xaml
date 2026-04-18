@@ -1,0 +1,1639 @@
+<Window x:Class="GearGauge.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:conv="clr-namespace:GearGauge.UI.Converters"
+        xmlns:ctrl="clr-namespace:GearGauge.UI.Controls"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:vm="clr-namespace:GearGauge.UI.ViewModels"
+        mc:Ignorable="d"
+        Width="1380"
+        Height="900"
+        MinWidth="1080"
+        MinHeight="760"
+        Background="{DynamicResource WindowBackgroundBrush}"
+        Foreground="{DynamicResource TextPrimaryBrush}"
+        FontWeight="Medium">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <conv:InverseBooleanToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" />
+        <x:Array x:Key="Decimals0To4" Type="{x:Type sys:Int32}">
+            <sys:Int32>0</sys:Int32>
+            <sys:Int32>1</sys:Int32>
+            <sys:Int32>2</sys:Int32>
+            <sys:Int32>3</sys:Int32>
+            <sys:Int32>4</sys:Int32>
+        </x:Array>
+        <x:Array x:Key="Decimals0To3" Type="{x:Type sys:Int32}">
+            <sys:Int32>0</sys:Int32>
+            <sys:Int32>1</sys:Int32>
+            <sys:Int32>2</sys:Int32>
+            <sys:Int32>3</sys:Int32>
+        </x:Array>
+        <x:Array x:Key="ClockUnitOptions" Type="{x:Type sys:String}">
+            <sys:String>GHz</sys:String>
+            <sys:String>MHz</sys:String>
+        </x:Array>
+        <x:Array x:Key="NetworkUnitOptions" Type="{x:Type sys:String}">
+            <sys:String>Kbps</sys:String>
+            <sys:String>Mbps</sys:String>
+            <sys:String>Gbps</sys:String>
+            <sys:String>KB/s</sys:String>
+            <sys:String>MB/s</sys:String>
+        </x:Array>
+
+        <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#F5F7FB" />
+        <SolidColorBrush x:Key="WindowChromeBrush" Color="#FBFBFD" />
+        <SolidColorBrush x:Key="NavigationBackgroundBrush" Color="#FBFBFD" />
+        <SolidColorBrush x:Key="PageBackgroundBrush" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="CardBackgroundBrush" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="SecondaryCardBackgroundBrush" Color="#F7F9FC" />
+        <SolidColorBrush x:Key="BorderBrush" Color="#D6DCE8" />
+        <SolidColorBrush x:Key="AccentBrush" Color="#0F6CBD" />
+        <SolidColorBrush x:Key="AccentForegroundBrush" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="TextPrimaryBrush" Color="#111827" />
+        <SolidColorBrush x:Key="TextSecondaryBrush" Color="#475569" />
+        <SolidColorBrush x:Key="TextMutedBrush" Color="#64748B" />
+        <SolidColorBrush x:Key="InputBackgroundBrush" Color="#F7F9FC" />
+        <SolidColorBrush x:Key="InputBorderBrush" Color="#CBD5E1" />
+        <SolidColorBrush x:Key="SelectedNavigationBackgroundBrush" Color="#DCEBFF" />
+        <SolidColorBrush x:Key="HoverNavigationBackgroundBrush" Color="#EEF3FB" />
+        <SolidColorBrush x:Key="SeparatorBrush" Color="#E5E7EB" />
+
+        <Style x:Key="NavButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Margin" Value="0,0,0,8" />
+            <Setter Property="Padding" Value="16,14" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="{DynamicResource NavigationBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="Root"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="14"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="{DynamicResource HoverNavigationBackgroundBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="{DynamicResource SelectedNavigationBackgroundBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Modern Win11-style CheckBox -->
+        <Style x:Key="ModernCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="CheckBorder"
+                                    Width="20" Height="20"
+                                    CornerRadius="5"
+                                    BorderThickness="1.5"
+                                    BorderBrush="{DynamicResource InputBorderBrush}"
+                                    Background="{DynamicResource InputBackgroundBrush}"
+                                    VerticalAlignment="Center"
+                                    SnapsToDevicePixels="True">
+                                <TextBlock x:Name="CheckMark"
+                                           FontFamily="Segoe Fluent Icons"
+                                           Text="&#xE73E;"
+                                           FontSize="12"
+                                           FontWeight="Bold"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Visibility="Collapsed" />
+                            </Border>
+                            <ContentPresenter Grid.Column="1"
+                                              Margin="8,0,0,0"
+                                              VerticalAlignment="Center"
+                                              TextBlock.Foreground="{TemplateBinding Foreground}" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckBorder" Property="Background" Value="{DynamicResource AccentBrush}" />
+                                <Setter TargetName="CheckBorder" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CheckBorder" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="IsChecked" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="CheckBorder" Property="Background" Value="{DynamicResource AccentBrush}" />
+                                <Setter TargetName="CheckBorder" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Small icon-only modern button for up/down -->
+        <Style x:Key="IconButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Width" Value="28" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Root"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="6"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="{DynamicResource HoverNavigationBackgroundBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource AccentBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="{DynamicResource SelectedNavigationBackgroundBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="18" />
+            <Setter Property="Padding" Value="18" />
+            <Setter Property="Margin" Value="0,0,18,18" />
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="{DynamicResource InputBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource InputBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="CaretBrush" Value="{DynamicResource AccentBrush}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6"
+                                Height="34"
+                                Padding="10,0"
+                                SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"
+                                          VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Background" Value="{DynamicResource InputBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource InputBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Padding" Value="10,6" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ComboBoxItem">
+                                    <Border x:Name="ItemBorder"
+                                            Background="{TemplateBinding Background}"
+                                            CornerRadius="4"
+                                            Padding="{TemplateBinding Padding}"
+                                            Margin="4,1">
+                                        <ContentPresenter />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsHighlighted" Value="True">
+                                            <Setter TargetName="ItemBorder" Property="Background" Value="{DynamicResource HoverNavigationBackgroundBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="ItemBorder" Property="Background" Value="{DynamicResource SelectedNavigationBackgroundBrush}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <Border x:Name="MainBorder"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="6"
+                                    Height="34"
+                                    IsHitTestVisible="False" />
+                            <ToggleButton x:Name="ToggleBtn"
+                                          ClickMode="Press"
+                                          Focusable="False"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Background="Transparent"
+                                          BorderThickness="0">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="28" />
+                                                </Grid.ColumnDefinitions>
+                                                <ContentPresenter x:Name="ContentSite"
+                                                                  Content="{TemplateBinding Content}"
+                                                                  IsHitTestVisible="False" />
+                                                <TextBlock x:Name="Arrow"
+                                                           Grid.Column="1"
+                                                           FontFamily="Segoe Fluent Icons"
+                                                           FontSize="10"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Foreground="{DynamicResource TextMutedBrush}"
+                                                           Text="&#xE70D;" />
+                                            </Grid>
+                                        </Border>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              Margin="10,0,32,0"
+                                              IsHitTestVisible="False"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                              VerticalAlignment="Center" />
+                            <Popup x:Name="PART_Popup"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   AllowsTransparency="True"
+                                   PopupAnimation="Slide">
+                                <Border x:Name="PopupBorder"
+                                        Width="{Binding ActualWidth, ElementName=MainBorder}"
+                                        Background="{DynamicResource CardBackgroundBrush}"
+                                        BorderBrush="{DynamicResource BorderBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Margin="0,4,0,0"
+                                        MaxHeight="300">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter Margin="4" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsDropDownOpen" Value="True">
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="14,8" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Root"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="Opacity" Value="0.9" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Root" Property="Opacity" Value="0.75" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Root" Property="Opacity" Value="0.4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="14,8" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="{DynamicResource SecondaryCardBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Root"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="Opacity" Value="0.9" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Root" Property="Opacity" Value="0.75" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Root" Property="Opacity" Value="0.4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Win11 风格紧凑按钮 -->
+        <Style x:Key="CompactButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="10,4" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Root"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="{DynamicResource HoverNavigationBackgroundBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="{DynamicResource SelectedNavigationBackgroundBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Root" Property="Opacity" Value="0.4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Global modern ScrollBar style - applies to ALL ScrollBars including ComboBox popup -->
+        <Style TargetType="ScrollBar">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid>
+                            <Border Background="Transparent" Width="10" />
+                            <Track x:Name="PART_Track" IsDirectionReversed="True">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.PageUpCommand" Focusable="False">
+                                        <RepeatButton.Template>
+                                            <ControlTemplate TargetType="RepeatButton">
+                                                <Border Background="Transparent" />
+                                            </ControlTemplate>
+                                        </RepeatButton.Template>
+                                    </RepeatButton>
+                                </Track.DecreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border x:Name="ThumbBorder"
+                                                        Background="{DynamicResource TextMutedBrush}"
+                                                        Opacity="0.5"
+                                                        CornerRadius="5"
+                                                        Margin="2,0"
+                                                        MinHeight="30" />
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="ThumbBorder" Property="Opacity" Value="0.8" />
+                                                        <Setter TargetName="ThumbBorder" Property="Background" Value="{DynamicResource TextSecondaryBrush}" />
+                                                    </Trigger>
+                                                    <Trigger Property="IsDragging" Value="True">
+                                                        <Setter TargetName="ThumbBorder" Property="Opacity" Value="1.0" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.PageDownCommand" Focusable="False">
+                                        <RepeatButton.Template>
+                                            <ControlTemplate TargetType="RepeatButton">
+                                                <Border Background="Transparent" />
+                                            </ControlTemplate>
+                                        </RepeatButton.Template>
+                                    </RepeatButton>
+                                </Track.IncreaseRepeatButton>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Height" Value="10" />
+                    <Setter Property="Width" Value="Auto" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="10" />
+                    <Setter Property="Height" Value="Auto" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="16" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Background="{DynamicResource NavigationBackgroundBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="22"
+                Padding="18">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <TextBlock FontSize="28"
+                               FontWeight="SemiBold"
+                               Text="{Binding Texts[AppTitle]}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="2"
+                            Margin="0,28,0,0">
+                    <ToggleButton Style="{StaticResource NavButtonStyle}"
+                                  IsChecked="{Binding IsMonitorPageSelected, Mode=TwoWay}"
+                                  Click="OnShowMonitorPage">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock FontFamily="Segoe Fluent Icons"
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       Text="&#xEF3D;" />
+                            <TextBlock Grid.Column="1"
+                                       Margin="12,0,0,0"
+                                       VerticalAlignment="Center"
+                                       FontSize="17"
+                                       FontWeight="SemiBold"
+                                       Text="{Binding Texts[MonitorTab]}" />
+                        </Grid>
+                    </ToggleButton>
+
+                    <ToggleButton Style="{StaticResource NavButtonStyle}"
+                                  IsChecked="{Binding IsOverlayPageSelected, Mode=TwoWay}"
+                                  Click="OnShowOverlayPage">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock FontFamily="Segoe Fluent Icons"
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       Text="&#xE8B9;" />
+                            <TextBlock Grid.Column="1"
+                                       Margin="12,0,0,0"
+                                       VerticalAlignment="Center"
+                                       FontSize="17"
+                                       FontWeight="SemiBold"
+                                       Text="{Binding Texts[OverlayTab]}" />
+                        </Grid>
+                    </ToggleButton>
+
+                    <ToggleButton Style="{StaticResource NavButtonStyle}"
+                                  IsChecked="{Binding IsTaskbarPageSelected, Mode=TwoWay}"
+                                  Click="OnShowTaskbarPage">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock FontFamily="Segoe Fluent Icons"
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       Text="&#xE774;" />
+                            <TextBlock Grid.Column="1"
+                                       Margin="12,0,0,0"
+                                       VerticalAlignment="Center"
+                                       FontSize="17"
+                                       FontWeight="SemiBold"
+                                       Text="{Binding Texts[TaskbarTab]}" />
+                        </Grid>
+                    </ToggleButton>
+
+                    <ToggleButton Style="{StaticResource NavButtonStyle}"
+                                  IsChecked="{Binding IsSettingsPageSelected, Mode=TwoWay}"
+                                  Click="OnShowSettingsPage">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock FontFamily="Segoe Fluent Icons"
+                                       FontSize="18"
+                                       VerticalAlignment="Center"
+                                       Text="&#xE713;" />
+                            <TextBlock Grid.Column="1"
+                                       Margin="12,0,0,0"
+                                       VerticalAlignment="Center"
+                                       FontSize="17"
+                                       FontWeight="SemiBold"
+                                       Text="{Binding Texts[SettingsTab]}" />
+                        </Grid>
+                    </ToggleButton>
+                </StackPanel>
+
+                <Border Grid.Row="4"
+                        Padding="14"
+                        CornerRadius="16"
+                        Background="{DynamicResource SecondaryCardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock FontSize="12"
+                                   Foreground="{DynamicResource TextMutedBrush}"
+                                   Text="{Binding LastUpdatedText}" />
+                        <TextBlock Margin="0,6,0,0"
+                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                   Text="{Binding ElevationBadge}" />
+                        <Button Margin="0,12,0,0"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Visibility="{Binding CanElevate, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Click="OnRestartAsAdmin">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe Fluent Icons"
+                                           Margin="0,0,8,0"
+                                           Text="&#xE72E;" />
+                                <TextBlock Text="{Binding Texts[RestartAsAdmin]}" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="2"
+                Background="{DynamicResource PageBackgroundBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="22"
+                Padding="18">
+            <Grid>
+                <Grid Visibility="{Binding IsMonitorPageSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel>
+                            <!-- CPU Card - full width -->
+                            <Border Style="{StaticResource CardStyle}" Margin="0,0,0,18">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="Segoe Fluent Icons"
+                                                   FontSize="20"
+                                                   Foreground="{DynamicResource AccentBrush}"
+                                                   Text="&#xEEA1;" />
+                                        <TextBlock Margin="10,0,0,0"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding CpuHeader}" />
+                                    </StackPanel>
+
+                                    <ItemsControl Margin="0,18,0,0"
+                                                  ItemsSource="{Binding CpuSummary}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type vm:MetricRowViewModel}">
+                                                <Grid Margin="0,0,0,10">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="180" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Foreground="{DynamicResource TextSecondaryBrush}"
+                                                               Text="{Binding Label}" />
+                                                    <TextBlock Grid.Column="1"
+                                                               FontWeight="SemiBold"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               Text="{Binding Value}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                    <TextBlock Margin="0,10,0,12"
+                                               Foreground="{DynamicResource TextMutedBrush}"
+                                               Text="{Binding Texts[PerCoreMetrics]}" />
+
+                                    <ItemsControl ItemsSource="{Binding CpuCores}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type vm:CpuCoreViewModel}">
+                                                <Border MinWidth="160"
+                                                        Margin="0,0,12,12"
+                                                        Padding="12"
+                                                        Background="{DynamicResource SecondaryCardBackgroundBrush}"
+                                                        BorderBrush="{DynamicResource BorderBrush}"
+                                                        BorderThickness="1"
+                                                        CornerRadius="14">
+                                                    <StackPanel>
+                                                        <TextBlock FontWeight="SemiBold"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Text="{Binding Title}" />
+                                                        <TextBlock Margin="0,10,0,0"
+                                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Text="{Binding UsageText}" />
+                                                        <TextBlock Foreground="{DynamicResource TextSecondaryBrush}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Text="{Binding ClockText}" />
+                                                        <TextBlock Foreground="{DynamicResource TextSecondaryBrush}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Text="{Binding TemperatureText}" />
+                                                        <TextBlock Foreground="{DynamicResource TextSecondaryBrush}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Text="{Binding PowerText}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- GPU + Memory row -->
+                            <Grid Margin="0,0,0,18">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="18" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontFamily="Segoe Fluent Icons"
+                                                       FontSize="20"
+                                                       Foreground="{DynamicResource AccentBrush}"
+                                                       Text="&#xE967;" />
+                                            <TextBlock Margin="10,0,0,0"
+                                                       FontSize="20"
+                                                       FontWeight="SemiBold"
+                                                       Text="{Binding Texts[GpuSection]}" />
+                                        </StackPanel>
+                                        <ItemsControl Margin="0,18,0,0"
+                                                      ItemsSource="{Binding Gpus}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type vm:GpuViewModel}">
+                                                    <Border Margin="0,0,0,12"
+                                                            Padding="12"
+                                                            Background="{DynamicResource SecondaryCardBackgroundBrush}"
+                                                            BorderBrush="{DynamicResource BorderBrush}"
+                                                            BorderThickness="1"
+                                                            CornerRadius="14">
+                                                        <StackPanel>
+                                                            <TextBlock FontWeight="SemiBold"
+                                                                       TextTrimming="CharacterEllipsis"
+                                                                       Text="{Binding Header}" />
+                                                            <UniformGrid Margin="0,10,0,0"
+                                                                         Columns="2">
+                                                                <TextBlock Foreground="{DynamicResource TextSecondaryBrush}" TextTrimming="CharacterEllipsis" Text="{Binding UsageText}" />
+                                                                <TextBlock Foreground="{DynamicResource TextSecondaryBrush}" TextTrimming="CharacterEllipsis" Text="{Binding TemperatureText}" />
+                                                                <TextBlock Foreground="{DynamicResource TextSecondaryBrush}" TextTrimming="CharacterEllipsis" Text="{Binding PowerText}" />
+                                                                <TextBlock Foreground="{DynamicResource TextSecondaryBrush}" TextTrimming="CharacterEllipsis" Text="{Binding ClockText}" />
+                                                            </UniformGrid>
+                                                        </StackPanel>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="2" Style="{StaticResource CardStyle}" Margin="0">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontFamily="Segoe Fluent Icons"
+                                                       FontSize="20"
+                                                       Foreground="{DynamicResource AccentBrush}"
+                                                       Text="&#xEEA0;" />
+                                            <TextBlock Margin="10,0,0,0"
+                                                       FontSize="20"
+                                                       FontWeight="SemiBold"
+                                                       Text="{Binding Texts[MemorySection]}" />
+                                        </StackPanel>
+                                        <ItemsControl Margin="0,18,0,0"
+                                                      ItemsSource="{Binding MemoryRows}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type vm:MetricRowViewModel}">
+                                                    <Grid Margin="0,0,0,10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="150" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Foreground="{DynamicResource TextSecondaryBrush}"
+                                                                   Text="{Binding Label}" />
+                                                        <TextBlock Grid.Column="1"
+                                                                   FontWeight="SemiBold"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Text="{Binding Value}" />
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+
+                            <!-- FPS + Network row -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="18" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontFamily="Segoe Fluent Icons"
+                                                       FontSize="20"
+                                                       Foreground="{DynamicResource AccentBrush}"
+                                                       Text="&#xEC4A;" />
+                                            <TextBlock Margin="10,0,0,0"
+                                                       FontSize="20"
+                                                       FontWeight="SemiBold"
+                                                       Text="{Binding Texts[FpsSection]}" />
+                                        </StackPanel>
+                                        <ItemsControl Margin="0,18,0,0"
+                                                      ItemsSource="{Binding FpsRows}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type vm:MetricRowViewModel}">
+                                                    <Grid Margin="0,0,0,10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="150" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Foreground="{DynamicResource TextSecondaryBrush}"
+                                                                   Text="{Binding Label}" />
+                                                        <TextBlock Grid.Column="1"
+                                                                   FontWeight="SemiBold"
+                                                                   TextWrapping="Wrap"
+                                                                   Text="{Binding Value}" />
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="2" Style="{StaticResource CardStyle}" Margin="0">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontFamily="Segoe Fluent Icons"
+                                                       FontSize="20"
+                                                       Foreground="{DynamicResource AccentBrush}"
+                                                       Text="&#xEE77;" />
+                                            <TextBlock Margin="10,0,0,0"
+                                                       FontSize="20"
+                                                       FontWeight="SemiBold"
+                                                       Text="{Binding Texts[NetworkSection]}" />
+                                        </StackPanel>
+                                        <ItemsControl Margin="0,18,0,0"
+                                                      ItemsSource="{Binding NetworkAdapters}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type vm:NetworkAdapterViewModel}">
+                                                    <Border Margin="0,0,0,12"
+                                                            Padding="12"
+                                                            Background="{DynamicResource SecondaryCardBackgroundBrush}"
+                                                            BorderBrush="{DynamicResource BorderBrush}"
+                                                            BorderThickness="1"
+                                                            CornerRadius="14">
+                                                        <StackPanel>
+                                                            <TextBlock FontWeight="SemiBold"
+                                                                       TextTrimming="CharacterEllipsis"
+                                                                       Text="{Binding Header}" />
+                                                            <TextBlock Margin="0,10,0,0"
+                                                                       Foreground="{DynamicResource TextSecondaryBrush}"
+                                                                       TextTrimming="CharacterEllipsis"
+                                                                       Text="{Binding StateText}" />
+                                                            <TextBlock Foreground="{DynamicResource TextSecondaryBrush}" TextTrimming="CharacterEllipsis" Text="{Binding DownloadText}" />
+                                                            <TextBlock Foreground="{DynamicResource TextSecondaryBrush}" TextTrimming="CharacterEllipsis" Text="{Binding UploadText}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+
+                <Grid Visibility="{Binding IsSettingsPageSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="18" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="18" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="18" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="18" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="18" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="18" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="18" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Row 0: Sampling | Percentages -->
+                            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="Segoe Fluent Icons" FontSize="20"
+                                                   Foreground="{DynamicResource AccentBrush}" Text="&#xE713;" />
+                                        <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Texts[SettingsSampling]}" />
+                                    </StackPanel>
+                                    <TextBlock Margin="0,18,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[SampleIntervalMs]}" />
+                                    <ctrl:SpinEditControl Minimum="200" Maximum="5000" Increment="100"
+                                                          Value="{Binding Settings.SampleIntervalMs, UpdateSourceTrigger=LostFocus}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[SettingsLanguage]}" />
+                                    <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                              ItemsSource="{Binding LanguageOptions}"
+                                              SelectedValuePath="Value" DisplayMemberPath="Label"
+                                              SelectedValue="{Binding Settings.Language}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[SettingsTheme]}" />
+                                    <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                              ItemsSource="{Binding ThemeOptions}"
+                                              SelectedValuePath="Value" DisplayMemberPath="Label"
+                                              SelectedValue="{Binding Settings.ThemeMode}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[SettingsTemperatureUnit]}" />
+                                    <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                              ItemsSource="{Binding TemperatureUnitOptions}"
+                                              SelectedValuePath="Value" DisplayMemberPath="Label"
+                                              SelectedValue="{Binding Settings.TemperatureUnit}" />
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource CardStyle}" Margin="0">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="Segoe Fluent Icons" FontSize="20"
+                                                   Foreground="{DynamicResource AccentBrush}" Text="&#xE9D9;" />
+                                        <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Texts[SettingsPercentages]}" />
+                                    </StackPanel>
+                                    <TextBlock Margin="0,18,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[CpuUsageDecimals]}" />
+                                    <ctrl:SpinEditControl Minimum="0" Maximum="4" Value="{Binding Settings.CpuUsageDecimals}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[GpuUsageDecimals]}" />
+                                    <ctrl:SpinEditControl Minimum="0" Maximum="4" Value="{Binding Settings.GpuUsageDecimals}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[MemoryUsageDecimals]}" />
+                                    <ctrl:SpinEditControl Minimum="0" Maximum="4" Value="{Binding Settings.MemoryUsageDecimals}" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Row 2: Temperatures | Clocks -->
+                            <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="Segoe Fluent Icons" FontSize="20"
+                                                   Foreground="{DynamicResource AccentBrush}" Text="&#xE806;" />
+                                        <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Texts[SettingsTemperatures]}" />
+                                    </StackPanel>
+                                    <TextBlock Margin="0,18,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[CpuTemperatureDecimals]}" />
+                                    <ctrl:SpinEditControl Minimum="0" Maximum="3" Value="{Binding Settings.CpuTemperatureDecimals}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[GpuTemperatureDecimals]}" />
+                                    <ctrl:SpinEditControl Minimum="0" Maximum="3" Value="{Binding Settings.GpuTemperatureDecimals}" />
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource CardStyle}" Margin="0">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="Segoe Fluent Icons" FontSize="20"
+                                                   Foreground="{DynamicResource AccentBrush}" Text="&#xEC92;" />
+                                        <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Texts[SettingsClocks]}" />
+                                    </StackPanel>
+                                    <TextBlock Margin="0,18,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[CpuClock]}" />
+                                    <Grid Margin="0,0,0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="18" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Margin="0,0,0,4"
+                                                   Foreground="{DynamicResource TextMutedBrush}" FontSize="12"
+                                                   Text="{Binding Texts[UnitLabel]}" />
+                                        <TextBlock Grid.Column="2" Margin="0,0,0,4"
+                                                   Foreground="{DynamicResource TextMutedBrush}" FontSize="12"
+                                                   Text="{Binding Texts[DecimalsLabel]}" />
+                                    </Grid>
+                                    <Grid Margin="0,0,0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="18" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <ComboBox Grid.Column="0" Margin="0"
+                                                  Style="{StaticResource ComboBoxStyle}"
+                                                  ItemsSource="{StaticResource ClockUnitOptions}"
+                                                  SelectedItem="{Binding Settings.CpuClockUnit}" />
+                                        <ctrl:SpinEditControl Grid.Column="2" Margin="0"
+                                                              Minimum="0" Maximum="4"
+                                                              Value="{Binding Settings.CpuClockDecimals}" />
+                                    </Grid>
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[GpuClock]}" />
+                                    <Grid Margin="0,0,0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="18" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Margin="0,0,0,4"
+                                                   Foreground="{DynamicResource TextMutedBrush}" FontSize="12"
+                                                   Text="{Binding Texts[UnitLabel]}" />
+                                        <TextBlock Grid.Column="2" Margin="0,0,0,4"
+                                                   Foreground="{DynamicResource TextMutedBrush}" FontSize="12"
+                                                   Text="{Binding Texts[DecimalsLabel]}" />
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="18" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <ComboBox Grid.Column="0" Margin="0"
+                                                  Style="{StaticResource ComboBoxStyle}"
+                                                  ItemsSource="{StaticResource ClockUnitOptions}"
+                                                  SelectedItem="{Binding Settings.GpuClockUnit}" />
+                                        <ctrl:SpinEditControl Grid.Column="2" Margin="0"
+                                                              Minimum="0" Maximum="4"
+                                                              Value="{Binding Settings.GpuClockDecimals}" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Row 4: Power/Memory | Network -->
+                            <Border Grid.Row="4" Grid.Column="0" Style="{StaticResource CardStyle}" Margin="0">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="Segoe Fluent Icons" FontSize="20"
+                                                   Foreground="{DynamicResource AccentBrush}" Text="&#xE83F;" />
+                                        <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Texts[SettingsPowerMemory]}" />
+                                    </StackPanel>
+                                    <TextBlock Margin="0,18,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[CpuPowerDecimals]}" />
+                                    <ctrl:SpinEditControl Minimum="0" Maximum="3" Value="{Binding Settings.CpuPowerDecimals}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[GpuPowerDecimals]}" />
+                                    <ctrl:SpinEditControl Minimum="0" Maximum="3" Value="{Binding Settings.GpuPowerDecimals}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[MemoryCapacityDecimals]}" />
+                                    <ctrl:SpinEditControl Minimum="0" Maximum="4" Value="{Binding Settings.MemoryCapacityDecimals}" />
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Row="4" Grid.Column="2" Style="{StaticResource CardStyle}" Margin="0">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="Segoe Fluent Icons" FontSize="20"
+                                                   Foreground="{DynamicResource AccentBrush}" Text="&#xEE77;" />
+                                        <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Texts[SettingsNetwork]}" />
+                                    </StackPanel>
+                                    <TextBlock Margin="0,18,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[SettingsGpuSelection]}" />
+                                    <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                              ItemsSource="{Binding GpuOptions}"
+                                              SelectedValuePath="Value" DisplayMemberPath="Label"
+                                              SelectedValue="{Binding Settings.SelectedGpuId}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[SettingsMetricGpuSelection]}" />
+                                    <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                              ItemsSource="{Binding MetricGpuOptions}"
+                                              SelectedValuePath="Value" DisplayMemberPath="Label"
+                                              SelectedValue="{Binding Settings.MetricGpuId}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[SettingsNetworkSelection]}" />
+                                    <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                              ItemsSource="{Binding NetworkAdapterOptions}"
+                                              SelectedValuePath="Value" DisplayMemberPath="Label"
+                                              SelectedValue="{Binding Settings.SelectedNetworkAdapterId}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[SettingsMetricNetworkSelection]}" />
+                                    <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                              ItemsSource="{Binding MetricNetworkAdapterOptions}"
+                                              SelectedValuePath="Value" DisplayMemberPath="Label"
+                                              SelectedValue="{Binding Settings.MetricNetworkAdapterId}" />
+                                    <TextBlock Margin="0,12,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Texts[NetworkSpeed]}" />
+                                    <Grid Margin="0,0,0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="18" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Margin="0,0,0,4"
+                                                   Foreground="{DynamicResource TextMutedBrush}" FontSize="12"
+                                                   Text="{Binding Texts[UnitLabel]}" />
+                                        <TextBlock Grid.Column="2" Margin="0,0,0,4"
+                                                   Foreground="{DynamicResource TextMutedBrush}" FontSize="12"
+                                                   Text="{Binding Texts[DecimalsLabel]}" />
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="18" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <ComboBox Grid.Column="0" Margin="0"
+                                                  Style="{StaticResource ComboBoxStyle}"
+                                                  ItemsSource="{StaticResource NetworkUnitOptions}"
+                                                  SelectedItem="{Binding Settings.NetworkSpeedUnit}" />
+                                        <ctrl:SpinEditControl Grid.Column="2" Margin="0"
+                                                              Minimum="0" Maximum="4"
+                                                              Value="{Binding Settings.NetworkSpeedDecimals}" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Row 6: System settings - spans both columns -->
+                            <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource CardStyle}" Margin="0">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="Segoe Fluent Icons" FontSize="20"
+                                                   Foreground="{DynamicResource AccentBrush}" Text="&#xE977;" />
+                                        <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Texts[SettingsSystem]}" />
+                                    </StackPanel>
+                                    <CheckBox Margin="0,18,0,10"
+                                              Content="{Binding Texts[SettingsAutoStart]}"
+                                              IsChecked="{Binding Settings.AutoStart}"
+                                              Style="{StaticResource ModernCheckBoxStyle}" />
+                                    <CheckBox Content="{Binding Texts[SettingsCloseToTray]}"
+                                              IsChecked="{Binding Settings.CloseToTray}"
+                                              Style="{StaticResource ModernCheckBoxStyle}" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Row 8: Overlay settings removed to dedicated page -->
+
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- Overlay page -->
+                <Grid Visibility="{Binding IsOverlayPageSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel>
+                            <!-- Enable + Position card -->
+                            <Border Style="{StaticResource CardStyle}" Margin="0,0,0,18">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="Segoe Fluent Icons" FontSize="20"
+                                                   Foreground="{DynamicResource AccentBrush}" Text="&#xE8B9;" />
+                                        <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Texts[SettingsOverlay]}" />
+                                    </StackPanel>
+                                    <CheckBox Margin="0,18,0,10"
+                                              Content="{Binding Texts[OverlayEnabled]}"
+                                              IsChecked="{Binding OverlaySettings.OverlayEnabled}"
+                                              Style="{StaticResource ModernCheckBoxStyle}" />
+
+                                    <!-- Position / Alignment / Palette row -->
+                                    <Grid Margin="0,6,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="14" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="14" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel>
+                                            <TextBlock Margin="0,0,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                                       Text="{Binding Texts[OverlayEdge]}" />
+                                            <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                                      ItemsSource="{Binding OverlaySettings.EdgeOptions}"
+                                                      SelectedValuePath="Value" DisplayMemberPath="Label"
+                                                      SelectedValue="{Binding OverlaySettings.SelectedEdge}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Margin="0,0,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                                       Text="{Binding Texts[OverlayAlignment]}" />
+                                            <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                                      ItemsSource="{Binding OverlaySettings.AlignmentOptions}"
+                                                      SelectedValuePath="Value" DisplayMemberPath="Label"
+                                                      SelectedValue="{Binding OverlaySettings.SelectedAlignment}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="4">
+                                            <TextBlock Margin="0,0,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                                       Text="{Binding Texts[OverlayPalette]}" />
+                                            <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                                      ItemsSource="{Binding OverlaySettings.PaletteOptions}"
+                                                      SelectedValuePath="Value" DisplayMemberPath="Label"
+                                                      SelectedValue="{Binding OverlaySettings.SelectedPalette}" />
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <!-- Uniform color row -->
+                                    <Grid Margin="0,12,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="140" />
+                                            <ColumnDefinition Width="20" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                   Text="{Binding Texts[UniformColor]}" />
+                                        <ctrl:ColorPickerControl x:Name="OverlayUniformColorPicker" Grid.Column="2" Margin="0"
+                                                                 VerticalAlignment="Center"
+                                                                 HexColor="#00FFCC" />
+                                        <Button Grid.Column="4" Content="{Binding Texts[ApplyToAll]}"
+                                                Click="OnApplyOverlayUniformColor"
+                                                Style="{StaticResource CompactButtonStyle}" />
+                                    </Grid>
+
+                                    <!-- Font size + Spacing row -->
+                                    <Grid Margin="0,16,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="90" />
+                                            <ColumnDefinition Width="28" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="90" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                   Text="{Binding Texts[OverlayFontSize]}" />
+                                        <ctrl:SpinEditControl Grid.Column="2" Margin="0"
+                                                              Minimum="8" Maximum="36"
+                                                              Value="{Binding OverlaySettings.OverlayFontSize}" />
+                                        <TextBlock Grid.Column="4" VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                   Text="{Binding Texts[OverlayItemSpacing]}" />
+                                        <ctrl:SpinEditControl Grid.Column="6" Margin="0"
+                                                              Minimum="0" Maximum="40"
+                                                              Value="{Binding OverlaySettings.OverlayItemSpacing}" />
+                                    </Grid>
+
+                                    <!-- Background controls -->
+                                    <Border Height="1" Background="{DynamicResource SeparatorBrush}" Margin="0,16,0,16" Opacity="0.5" />
+                                    <CheckBox Margin="0,0,0,12"
+                                              Content="{Binding Texts[OverlayBackgroundEnabled]}"
+                                              IsChecked="{Binding OverlaySettings.OverlayBackgroundEnabled}"
+                                              Style="{StaticResource ModernCheckBoxStyle}" />
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="140" />
+                                            <ColumnDefinition Width="20" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="90" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                   Text="{Binding Texts[OverlayBackgroundColor]}" />
+                                        <ctrl:ColorPickerControl Grid.Column="2" Margin="0"
+                                                                 VerticalAlignment="Center"
+                                                                 HexColor="{Binding OverlaySettings.OverlayBackgroundColor, UpdateSourceTrigger=LostFocus}" />
+                                        <TextBlock Grid.Column="4" VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                   Text="{Binding Texts[OverlayBackgroundOpacity]}" />
+                                        <ctrl:SpinEditControl Grid.Column="6" Margin="0"
+                                                              Minimum="0" Maximum="1" Increment="0.05" DecimalPlaces="2"
+                                                              Value="{Binding OverlaySettings.OverlayBackgroundOpacity}" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Metric configuration card -->
+                            <Border Style="{StaticResource CardStyle}" Margin="0">
+                                <StackPanel>
+                                    <!-- Header row -->
+                                    <Grid Margin="0,0,0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="56" />
+                                            <ColumnDefinition Width="56" />
+                                            <ColumnDefinition Width="140" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="64" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="1" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="2" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center"
+                                                   Text="{Binding Texts[OverlayShowIcon]}" HorizontalAlignment="Center" />
+                                        <TextBlock Grid.Column="3" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center"
+                                                   Text="{Binding Texts[OverlayShowLabel]}" HorizontalAlignment="Center" />
+                                        <TextBlock Grid.Column="4" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center"
+                                                   Text="{Binding Texts[OverlayMetricColor]}" />
+                                        <TextBlock Grid.Column="5" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center"
+                                                   Text="{Binding Texts[OverlayCustomLabel]}" />
+                                    </Grid>
+
+                                    <!-- Metric items -->
+                                    <ItemsControl ItemsSource="{Binding OverlaySettings.Metrics}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Grid Height="40">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="40" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="56" />
+                                                            <ColumnDefinition Width="56" />
+                                                            <ColumnDefinition Width="140" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="64" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <CheckBox VerticalAlignment="Center"
+                                                                  IsChecked="{Binding IsVisible}"
+                                                                  Style="{StaticResource ModernCheckBoxStyle}" />
+                                                        <TextBlock Grid.Column="1" VerticalAlignment="Center"
+                                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                                   Text="{Binding Label}" />
+                                                        <CheckBox Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                                  IsChecked="{Binding ShowIcon}"
+                                                                  Style="{StaticResource ModernCheckBoxStyle}" />
+                                                        <CheckBox Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                                  IsChecked="{Binding ShowLabel}"
+                                                                  Style="{StaticResource ModernCheckBoxStyle}" />
+                                                        <ctrl:ColorPickerControl Grid.Column="4" Margin="0"
+                                                                                 VerticalAlignment="Center"
+                                                                                 HexColor="{Binding DisplayColor, UpdateSourceTrigger=LostFocus}" />
+                                                        <TextBox Grid.Column="5" Margin="0"
+                                                                 VerticalAlignment="Center"
+                                                                 Style="{StaticResource TextBoxStyle}"
+                                                                 Text="{Binding CustomLabel, UpdateSourceTrigger=LostFocus}" />
+                                                        <StackPanel Grid.Column="6" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                            <Button FontFamily="Segoe Fluent Icons" Content="&#xE70E;" FontSize="12"
+                                                                    Style="{StaticResource IconButtonStyle}"
+                                                                    Click="OnMetricMoveUp" />
+                                                            <Button FontFamily="Segoe Fluent Icons" Content="&#xE70D;" FontSize="12"
+                                                                    Style="{StaticResource IconButtonStyle}"
+                                                                    Click="OnMetricMoveDown" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                    <Border Height="1" Background="{DynamicResource SeparatorBrush}" Margin="0,2,0,2" Opacity="0.3" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- Taskbar Widget page -->
+                <Grid Visibility="{Binding IsTaskbarPageSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel>
+                            <!-- Enable + Style card -->
+                            <Border Style="{StaticResource CardStyle}" Margin="0,0,0,18">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="Segoe Fluent Icons" FontSize="20"
+                                                   Foreground="{DynamicResource AccentBrush}" Text="&#xE774;" />
+                                        <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="SemiBold"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Texts[SettingsTaskbar]}" />
+                                    </StackPanel>
+                                    <CheckBox Margin="0,18,0,10"
+                                              Content="{Binding Texts[TaskbarWidgetEnabled]}"
+                                              IsChecked="{Binding TaskbarSettings.TaskbarWidgetEnabled}"
+                                              Style="{StaticResource ModernCheckBoxStyle}" />
+
+                                    <!-- Position + Palette row -->
+                                    <Grid Margin="0,6,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="14" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel>
+                                            <TextBlock Margin="0,0,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                                       Text="{Binding Texts[TaskbarPosition]}" />
+                                            <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                                      ItemsSource="{Binding TaskbarSettings.PositionOptions}"
+                                                      SelectedValuePath="Value" DisplayMemberPath="Label"
+                                                      SelectedValue="{Binding TaskbarSettings.TaskbarPosition}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Margin="0,0,0,6" Foreground="{DynamicResource TextSecondaryBrush}"
+                                                       Text="{Binding Texts[OverlayPalette]}" />
+                                            <ComboBox Style="{StaticResource ComboBoxStyle}"
+                                                      ItemsSource="{Binding TaskbarSettings.PaletteOptions}"
+                                                      SelectedValuePath="Value" DisplayMemberPath="Label"
+                                                      SelectedValue="{Binding TaskbarSettings.SelectedPalette}" />
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <!-- Uniform color row -->
+                                    <Grid Margin="0,12,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="140" />
+                                            <ColumnDefinition Width="20" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                   Text="{Binding Texts[UniformColor]}" />
+                                        <ctrl:ColorPickerControl x:Name="TaskbarUniformColorPicker" Grid.Column="2" Margin="0"
+                                                                 VerticalAlignment="Center"
+                                                                 HexColor="#00FFCC" />
+                                        <Button Grid.Column="4" Content="{Binding Texts[ApplyToAll]}"
+                                                Click="OnApplyTaskbarUniformColor"
+                                                Style="{StaticResource CompactButtonStyle}" />
+                                    </Grid>
+
+                                    <!-- Font size + Spacing + MaxRows row -->
+                                    <Grid Margin="0,16,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="20" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="20" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="80" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                   Text="{Binding Texts[OverlayFontSize]}" />
+                                        <ctrl:SpinEditControl Grid.Column="2" Margin="0"
+                                                              Minimum="8" Maximum="20"
+                                                              Value="{Binding TaskbarSettings.TaskbarFontSize}" />
+                                        <TextBlock Grid.Column="4" VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                   Text="{Binding Texts[TaskbarRowSpacing]}" />
+                                        <ctrl:SpinEditControl Grid.Column="6" Margin="0"
+                                                              Minimum="0" Maximum="10"
+                                                              Value="{Binding TaskbarSettings.TaskbarRowSpacing}" />
+                                        <TextBlock Grid.Column="8" VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                   Text="{Binding Texts[TaskbarMaxRows]}" />
+                                        <ctrl:SpinEditControl Grid.Column="10" Margin="0"
+                                                              Minimum="1" Maximum="4"
+                                                              Value="{Binding TaskbarSettings.TaskbarMaxRows}" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Metric configuration card -->
+                            <Border Style="{StaticResource CardStyle}" Margin="0">
+                                <StackPanel>
+                                    <!-- Header row -->
+                                    <Grid Margin="0,0,0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="56" />
+                                            <ColumnDefinition Width="56" />
+                                            <ColumnDefinition Width="140" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="64" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="1" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="2" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center"
+                                                   Text="{Binding Texts[OverlayShowIcon]}" HorizontalAlignment="Center" />
+                                        <TextBlock Grid.Column="3" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center"
+                                                   Text="{Binding Texts[OverlayShowLabel]}" HorizontalAlignment="Center" />
+                                        <TextBlock Grid.Column="4" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center"
+                                                   Text="{Binding Texts[OverlayMetricColor]}" />
+                                        <TextBlock Grid.Column="5" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center"
+                                                   Text="{Binding Texts[OverlayCustomLabel]}" />
+                                    </Grid>
+
+                                    <!-- Metric items -->
+                                    <ItemsControl ItemsSource="{Binding TaskbarSettings.Metrics}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Grid Height="40">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="40" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="56" />
+                                                            <ColumnDefinition Width="56" />
+                                                            <ColumnDefinition Width="140" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="64" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <CheckBox VerticalAlignment="Center"
+                                                                  IsChecked="{Binding IsVisible}"
+                                                                  Style="{StaticResource ModernCheckBoxStyle}" />
+                                                        <TextBlock Grid.Column="1" VerticalAlignment="Center"
+                                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                                   Text="{Binding Label}" />
+                                                        <CheckBox Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                                  IsChecked="{Binding ShowIcon}"
+                                                                  Style="{StaticResource ModernCheckBoxStyle}" />
+                                                        <CheckBox Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                                  IsChecked="{Binding ShowLabel}"
+                                                                  Style="{StaticResource ModernCheckBoxStyle}" />
+                                                        <ctrl:ColorPickerControl Grid.Column="4" Margin="0"
+                                                                                 VerticalAlignment="Center"
+                                                                                 HexColor="{Binding DisplayColor, UpdateSourceTrigger=LostFocus}" />
+                                                        <TextBox Grid.Column="5" Margin="0"
+                                                                 VerticalAlignment="Center"
+                                                                 Style="{StaticResource TextBoxStyle}"
+                                                                 Text="{Binding CustomLabel, UpdateSourceTrigger=LostFocus}" />
+                                                        <StackPanel Grid.Column="6" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                            <Button FontFamily="Segoe Fluent Icons" Content="&#xE70E;" FontSize="12"
+                                                                    Style="{StaticResource IconButtonStyle}"
+                                                                    Click="OnTaskbarMetricMoveUp" />
+                                                            <Button FontFamily="Segoe Fluent Icons" Content="&#xE70D;" FontSize="12"
+                                                                    Style="{StaticResource IconButtonStyle}"
+                                                                    Click="OnTaskbarMetricMoveDown" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                    <Border Height="1" Background="{DynamicResource SeparatorBrush}" Margin="0,2,0,2" Opacity="0.3" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Toast notification -->
+        <Border x:Name="ToastBorder"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,28"
+                Padding="20,12"
+                CornerRadius="10"
+                Background="{DynamicResource AccentBrush}"
+                Visibility="{Binding IsToastVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                Opacity="0"
+                RenderTransform="{Binding Transform, ElementName=ToastTransform}">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.25" Color="#000000" />
+            </Border.Effect>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontFamily="Segoe Fluent Icons"
+                           FontSize="16"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"
+                           Text="&#xE73E;" />
+                <TextBlock FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           Text="{Binding ToastText}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

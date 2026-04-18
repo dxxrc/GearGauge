@@ -1,0 +1,2144 @@
+{
+  "TimestampUtc": "2026-04-18T12:12:00.229988+00:00",
+  "Cpu": {
+    "ModelName": "Unknown CPU",
+    "UsagePercent": 26.03578,
+    "TemperatureCelsius": {
+      "HasValue": false
+    },
+    "PowerWatt": {
+      "HasValue": false
+    },
+    "ClockGHz": {
+      "Value": 4.701,
+      "HasValue": true
+    },
+    "Cores": [
+      {
+        "Index": 0,
+        "UsagePercent": 0,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 1,
+        "UsagePercent": 46.217476,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 2,
+        "UsagePercent": 47.386242,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 3,
+        "UsagePercent": 20.6874,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 4,
+        "UsagePercent": 21.338081,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 5,
+        "UsagePercent": 61.898468,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 6,
+        "UsagePercent": 29.801678,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 7,
+        "UsagePercent": 32.565243,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 8,
+        "UsagePercent": 30.8451,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 9,
+        "UsagePercent": 39.629757,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 10,
+        "UsagePercent": 29.133558,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 11,
+        "UsagePercent": 35.442745,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 12,
+        "UsagePercent": 20.67364,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 13,
+        "UsagePercent": 4.0715575,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 14,
+        "UsagePercent": 8.322901,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 15,
+        "UsagePercent": 22.019642,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 16,
+        "UsagePercent": 12.369478,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 17,
+        "UsagePercent": 13.260878,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 18,
+        "UsagePercent": 13.674998,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 19,
+        "UsagePercent": 24.26191,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 20,
+        "UsagePercent": 22.324896,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 21,
+        "UsagePercent": 8.4813175,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 22,
+        "UsagePercent": 6.3410816,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 23,
+        "UsagePercent": 38.756706,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 24,
+        "UsagePercent": 35.353786,
+        "ClockGHz": {
+          "HasValue": false
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      }
+    ]
+  },
+  "Gpus": [
+    {
+      "Id": "/gpu-amd/0",
+      "Name": "AMD Radeon(TM) Graphics",
+      "Kind": "Integrated",
+      "IsActive": true,
+      "UsagePercent": 0,
+      "TemperatureCelsius": {
+        "Value": 46,
+        "HasValue": true
+      },
+      "PowerWatt": {
+        "Value": 45,
+        "HasValue": true
+      },
+      "ClockMHz": {
+        "Value": 600,
+        "HasValue": true
+      }
+    },
+    {
+      "Id": "/gpu-nvidia/0",
+      "Name": "NVIDIA GeForce RTX 4070",
+      "Kind": "Discrete",
+      "IsActive": true,
+      "UsagePercent": 56,
+      "TemperatureCelsius": {
+        "Value": 58,
+        "HasValue": true
+      },
+      "PowerWatt": {
+        "Value": 127.394,
+        "HasValue": true
+      },
+      "ClockMHz": {
+        "Value": 2790,
+        "HasValue": true
+      }
+    }
+  ],
+  "Memory": {
+    "ModelName": "Memory",
+    "TotalGB": 63.103016,
+    "UsedGB": 27.278503,
+    "AvailableGB": 35.824512,
+    "UsagePercent": 43.228523
+  },
+  "Fps": {
+    "DisplayOutputFps": {
+      "Value": 160,
+      "HasValue": true
+    },
+    "VideoPlaybackFps": {
+      "HasValue": false
+    },
+    "GameFps": {
+      "HasValue": false
+    },
+    "TargetDisplayIndex": 0,
+    "TargetDisplayName": "\\\\.\\DISPLAY1",
+    "ActiveContent": "WindowsTerminal",
+    "ProviderStatus": "Display=RefreshFallback(No outputs duplicated) | Game=ETW"
+  },
+  "NetworkAdapters": [
+    {
+      "AdapterId": "{71F46BFF-C5F3-4D99-ABFA-240F5D897849}",
+      "AdapterName": "\u4EE5\u592A\u7F51",
+      "IsUp": true,
+      "IsSelected": true,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{0AFD3ED9-02C8-0811-124D-1682118B6574}",
+      "AdapterName": "Meta",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Unknown(53)"
+    },
+    {
+      "AdapterId": "{37217669-42DA-4657-A55B-0D995D328250}",
+      "AdapterName": "Tailscale",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Unknown(53)"
+    },
+    {
+      "AdapterId": "{EDD8E975-C661-4DF1-815E-C532840E7BCB}",
+      "AdapterName": "VMware Network Adapter VMnet1",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{9C81ACA8-363F-4966-AA3B-40E9629803DA}",
+      "AdapterName": "VMware Network Adapter VMnet8",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{332D5EB4-C0BF-4B87-8D78-CDD6728C7B0A}",
+      "AdapterName": "WLAN",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{B4B87843-E6ED-41D7-8932-12CC9DFAF4E3}",
+      "AdapterName": "\u672C\u5730\u8FDE\u63A5* 10",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{9F637C86-C8A0-449C-A5A4-5FA284CD36F9}",
+      "AdapterName": "\u672C\u5730\u8FDE\u63A5* 9",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{840C79B2-B3A3-4ACC-A344-A88DACC390E6}",
+      "AdapterName": "\u84DD\u7259\u7F51\u7EDC\u8FDE\u63A5",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    }
+  ],
+  "ActiveMonitors": [
+    {
+      "Index": 0,
+      "DeviceName": "\\\\.\\DISPLAY1",
+      "FriendlyName": "\\\\.\\DISPLAY1",
+      "Width": 2560,
+      "Height": 1440,
+      "RefreshRate": 160,
+      "IsPrimary": true
+    },
+    {
+      "Index": 1,
+      "DeviceName": "\\\\.\\DISPLAY2",
+      "FriendlyName": "\\\\.\\DISPLAY2",
+      "Width": 1707,
+      "Height": 1067,
+      "RefreshRate": 130,
+      "IsPrimary": false
+    }
+  ],
+  "IsElevated": false,
+  "DataSourceInfo": "LHM \u002B PDH"
+}
+{
+  "TimestampUtc": "2026-04-18T12:12:01.4374501+00:00",
+  "Cpu": {
+    "ModelName": "Unknown CPU",
+    "UsagePercent": 12.738114,
+    "TemperatureCelsius": {
+      "HasValue": false
+    },
+    "PowerWatt": {
+      "HasValue": false
+    },
+    "ClockGHz": {
+      "Value": 4.701,
+      "HasValue": true
+    },
+    "Cores": [
+      {
+        "Index": 0,
+        "UsagePercent": 0,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 1,
+        "UsagePercent": 24.169027,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 2,
+        "UsagePercent": 36.27067,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 3,
+        "UsagePercent": 9.443325,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 4,
+        "UsagePercent": 11.062277,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 5,
+        "UsagePercent": 26.312273,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 6,
+        "UsagePercent": 34.40788,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 7,
+        "UsagePercent": 12.407219,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 8,
+        "UsagePercent": 10.408336,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 9,
+        "UsagePercent": 16.164516,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 10,
+        "UsagePercent": 20.379967,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 11,
+        "UsagePercent": 10.53499,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 12,
+        "UsagePercent": 14.173275,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 13,
+        "UsagePercent": 3.3012986,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 14,
+        "UsagePercent": 3.1425893,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 15,
+        "UsagePercent": 8.168298,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 16,
+        "UsagePercent": 7.483882,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 17,
+        "UsagePercent": 7.029891,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 18,
+        "UsagePercent": 6.5070987,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 19,
+        "UsagePercent": 7.7804384,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 20,
+        "UsagePercent": 10.6428385,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 21,
+        "UsagePercent": 8.330512,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 22,
+        "UsagePercent": 6.95014,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 23,
+        "UsagePercent": 4.751694,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 24,
+        "UsagePercent": 5.892265,
+        "ClockGHz": {
+          "HasValue": false
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      }
+    ]
+  },
+  "Gpus": [
+    {
+      "Id": "/gpu-amd/0",
+      "Name": "AMD Radeon(TM) Graphics",
+      "Kind": "Integrated",
+      "IsActive": true,
+      "UsagePercent": 0,
+      "TemperatureCelsius": {
+        "Value": 47,
+        "HasValue": true
+      },
+      "PowerWatt": {
+        "Value": 22,
+        "HasValue": true
+      },
+      "ClockMHz": {
+        "Value": 600,
+        "HasValue": true
+      }
+    },
+    {
+      "Id": "/gpu-nvidia/0",
+      "Name": "NVIDIA GeForce RTX 4070",
+      "Kind": "Discrete",
+      "IsActive": true,
+      "UsagePercent": 59.028374,
+      "TemperatureCelsius": {
+        "Value": 58,
+        "HasValue": true
+      },
+      "PowerWatt": {
+        "Value": 127.066,
+        "HasValue": true
+      },
+      "ClockMHz": {
+        "Value": 2790,
+        "HasValue": true
+      }
+    }
+  ],
+  "Memory": {
+    "ModelName": "Memory",
+    "TotalGB": 63.103016,
+    "UsedGB": 27.282364,
+    "AvailableGB": 35.820652,
+    "UsagePercent": 43.234642
+  },
+  "Fps": {
+    "DisplayOutputFps": {
+      "Value": 160,
+      "HasValue": true
+    },
+    "VideoPlaybackFps": {
+      "HasValue": false
+    },
+    "GameFps": {
+      "HasValue": false
+    },
+    "TargetDisplayIndex": 0,
+    "TargetDisplayName": "\\\\.\\DISPLAY1",
+    "ActiveContent": "Game: Borderlands3",
+    "ProviderStatus": "Display=RefreshFallback(No outputs duplicated) | Game=ETW | Game=Borderlands3(GPU(58.6%)) | Hint=RunAsAdmin"
+  },
+  "NetworkAdapters": [
+    {
+      "AdapterId": "{71F46BFF-C5F3-4D99-ABFA-240F5D897849}",
+      "AdapterName": "\u4EE5\u592A\u7F51",
+      "IsUp": true,
+      "IsSelected": true,
+      "UploadMbps": 0.010879471568523815,
+      "DownloadMbps": 0.008495913871938465,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{0AFD3ED9-02C8-0811-124D-1682118B6574}",
+      "AdapterName": "Meta",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0.0018350129116177622,
+      "DownloadMbps": 0.0044144794599772505,
+      "Type": "Unknown(53)"
+    },
+    {
+      "AdapterId": "{37217669-42DA-4657-A55B-0D995D328250}",
+      "AdapterName": "Tailscale",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Unknown(53)"
+    },
+    {
+      "AdapterId": "{EDD8E975-C661-4DF1-815E-C532840E7BCB}",
+      "AdapterName": "VMware Network Adapter VMnet1",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{9C81ACA8-363F-4966-AA3B-40E9629803DA}",
+      "AdapterName": "VMware Network Adapter VMnet8",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{332D5EB4-C0BF-4B87-8D78-CDD6728C7B0A}",
+      "AdapterName": "WLAN",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{B4B87843-E6ED-41D7-8932-12CC9DFAF4E3}",
+      "AdapterName": "\u672C\u5730\u8FDE\u63A5* 10",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{9F637C86-C8A0-449C-A5A4-5FA284CD36F9}",
+      "AdapterName": "\u672C\u5730\u8FDE\u63A5* 9",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{840C79B2-B3A3-4ACC-A344-A88DACC390E6}",
+      "AdapterName": "\u84DD\u7259\u7F51\u7EDC\u8FDE\u63A5",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    }
+  ],
+  "ActiveMonitors": [
+    {
+      "Index": 0,
+      "DeviceName": "\\\\.\\DISPLAY1",
+      "FriendlyName": "\\\\.\\DISPLAY1",
+      "Width": 2560,
+      "Height": 1440,
+      "RefreshRate": 160,
+      "IsPrimary": true
+    },
+    {
+      "Index": 1,
+      "DeviceName": "\\\\.\\DISPLAY2",
+      "FriendlyName": "\\\\.\\DISPLAY2",
+      "Width": 1707,
+      "Height": 1067,
+      "RefreshRate": 130,
+      "IsPrimary": false
+    }
+  ],
+  "IsElevated": false,
+  "DataSourceInfo": "LHM \u002B PDH"
+}
+{
+  "TimestampUtc": "2026-04-18T12:12:02.6019036+00:00",
+  "Cpu": {
+    "ModelName": "Unknown CPU",
+    "UsagePercent": 10.431022,
+    "TemperatureCelsius": {
+      "HasValue": false
+    },
+    "PowerWatt": {
+      "HasValue": false
+    },
+    "ClockGHz": {
+      "Value": 4.701,
+      "HasValue": true
+    },
+    "Cores": [
+      {
+        "Index": 0,
+        "UsagePercent": 0,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 1,
+        "UsagePercent": 18.23681,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 2,
+        "UsagePercent": 35.919876,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 3,
+        "UsagePercent": 6.7040024,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 4,
+        "UsagePercent": 7.6720715,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 5,
+        "UsagePercent": 21.337914,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 6,
+        "UsagePercent": 36.939518,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 7,
+        "UsagePercent": 8.787531,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 8,
+        "UsagePercent": 7.3387804,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 9,
+        "UsagePercent": 15.628296,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 10,
+        "UsagePercent": 16.508776,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 11,
+        "UsagePercent": 11.598932,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 12,
+        "UsagePercent": 9.614658,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 13,
+        "UsagePercent": 2.7062,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 14,
+        "UsagePercent": 1.3530612,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 15,
+        "UsagePercent": 5.4035783,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 16,
+        "UsagePercent": 6.6251516,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 17,
+        "UsagePercent": 2.9230058,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 18,
+        "UsagePercent": 4.142201,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 19,
+        "UsagePercent": 4.9405456,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 20,
+        "UsagePercent": 8.739573,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 21,
+        "UsagePercent": 4.736495,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 22,
+        "UsagePercent": 4.951751,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 23,
+        "UsagePercent": 3.8314402,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 24,
+        "UsagePercent": 3.7040472,
+        "ClockGHz": {
+          "HasValue": false
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      }
+    ]
+  },
+  "Gpus": [
+    {
+      "Id": "/gpu-amd/0",
+      "Name": "AMD Radeon(TM) Graphics",
+      "Kind": "Integrated",
+      "IsActive": true,
+      "UsagePercent": 0,
+      "TemperatureCelsius": {
+        "Value": 46,
+        "HasValue": true
+      },
+      "PowerWatt": {
+        "Value": 17,
+        "HasValue": true
+      },
+      "ClockMHz": {
+        "Value": 600,
+        "HasValue": true
+      }
+    },
+    {
+      "Id": "/gpu-nvidia/0",
+      "Name": "NVIDIA GeForce RTX 4070",
+      "Kind": "Discrete",
+      "IsActive": true,
+      "UsagePercent": 61.473843,
+      "TemperatureCelsius": {
+        "Value": 58,
+        "HasValue": true
+      },
+      "PowerWatt": {
+        "Value": 127.554,
+        "HasValue": true
+      },
+      "ClockMHz": {
+        "Value": 2790,
+        "HasValue": true
+      }
+    }
+  ],
+  "Memory": {
+    "ModelName": "Memory",
+    "TotalGB": 63.103016,
+    "UsedGB": 27.252907,
+    "AvailableGB": 35.85011,
+    "UsagePercent": 43.18796
+  },
+  "Fps": {
+    "DisplayOutputFps": {
+      "Value": 160,
+      "HasValue": true
+    },
+    "VideoPlaybackFps": {
+      "HasValue": false
+    },
+    "GameFps": {
+      "HasValue": false
+    },
+    "TargetDisplayIndex": 0,
+    "TargetDisplayName": "\\\\.\\DISPLAY1",
+    "ActiveContent": "Game: Borderlands3",
+    "ProviderStatus": "Display=RefreshFallback(No outputs duplicated) | Game=ETW | Game=Borderlands3(GPU(59.6%)) | Hint=RunAsAdmin"
+  },
+  "NetworkAdapters": [
+    {
+      "AdapterId": "{71F46BFF-C5F3-4D99-ABFA-240F5D897849}",
+      "AdapterName": "\u4EE5\u592A\u7F51",
+      "IsUp": true,
+      "IsSelected": true,
+      "UploadMbps": 0.00286106346483705,
+      "DownloadMbps": 0.002181818181818182,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{0AFD3ED9-02C8-0811-124D-1682118B6574}",
+      "AdapterName": "Meta",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0.000274442538593482,
+      "DownloadMbps": 0.000274442538593482,
+      "Type": "Unknown(53)"
+    },
+    {
+      "AdapterId": "{37217669-42DA-4657-A55B-0D995D328250}",
+      "AdapterName": "Tailscale",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Unknown(53)"
+    },
+    {
+      "AdapterId": "{EDD8E975-C661-4DF1-815E-C532840E7BCB}",
+      "AdapterName": "VMware Network Adapter VMnet1",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{9C81ACA8-363F-4966-AA3B-40E9629803DA}",
+      "AdapterName": "VMware Network Adapter VMnet8",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{332D5EB4-C0BF-4B87-8D78-CDD6728C7B0A}",
+      "AdapterName": "WLAN",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{B4B87843-E6ED-41D7-8932-12CC9DFAF4E3}",
+      "AdapterName": "\u672C\u5730\u8FDE\u63A5* 10",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{9F637C86-C8A0-449C-A5A4-5FA284CD36F9}",
+      "AdapterName": "\u672C\u5730\u8FDE\u63A5* 9",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{840C79B2-B3A3-4ACC-A344-A88DACC390E6}",
+      "AdapterName": "\u84DD\u7259\u7F51\u7EDC\u8FDE\u63A5",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    }
+  ],
+  "ActiveMonitors": [
+    {
+      "Index": 0,
+      "DeviceName": "\\\\.\\DISPLAY1",
+      "FriendlyName": "\\\\.\\DISPLAY1",
+      "Width": 2560,
+      "Height": 1440,
+      "RefreshRate": 160,
+      "IsPrimary": true
+    },
+    {
+      "Index": 1,
+      "DeviceName": "\\\\.\\DISPLAY2",
+      "FriendlyName": "\\\\.\\DISPLAY2",
+      "Width": 1707,
+      "Height": 1067,
+      "RefreshRate": 130,
+      "IsPrimary": false
+    }
+  ],
+  "IsElevated": false,
+  "DataSourceInfo": "LHM \u002B PDH"
+}
+{
+  "TimestampUtc": "2026-04-18T12:12:03.7687+00:00",
+  "Cpu": {
+    "ModelName": "Unknown CPU",
+    "UsagePercent": 11.125344,
+    "TemperatureCelsius": {
+      "HasValue": false
+    },
+    "PowerWatt": {
+      "HasValue": false
+    },
+    "ClockGHz": {
+      "Value": 4.701,
+      "HasValue": true
+    },
+    "Cores": [
+      {
+        "Index": 0,
+        "UsagePercent": 0,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 1,
+        "UsagePercent": 43.185318,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 2,
+        "UsagePercent": 23.347754,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 3,
+        "UsagePercent": 8.351445,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 4,
+        "UsagePercent": 9.90929,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 5,
+        "UsagePercent": 34.241306,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 6,
+        "UsagePercent": 20.244534,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 7,
+        "UsagePercent": 10.765266,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 8,
+        "UsagePercent": 7.203454,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 9,
+        "UsagePercent": 24.437386,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 10,
+        "UsagePercent": 10.445463,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 11,
+        "UsagePercent": 17.04749,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 12,
+        "UsagePercent": 7.6400337,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 13,
+        "UsagePercent": 1.418978,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 14,
+        "UsagePercent": 1.9103646,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 15,
+        "UsagePercent": 6.2769833,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 16,
+        "UsagePercent": 5.3678093,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 17,
+        "UsagePercent": 2.2471845,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 18,
+        "UsagePercent": 4.1049423,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 19,
+        "UsagePercent": 4.5743647,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 20,
+        "UsagePercent": 8.270818,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 21,
+        "UsagePercent": 5.0271153,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 22,
+        "UsagePercent": 3.4874797,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 23,
+        "UsagePercent": 4.614216,
+        "ClockGHz": {
+          "Value": 4.701,
+          "HasValue": true
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      },
+      {
+        "Index": 24,
+        "UsagePercent": 2.8889716,
+        "ClockGHz": {
+          "HasValue": false
+        },
+        "TemperatureCelsius": {
+          "HasValue": false
+        },
+        "PowerWatt": {
+          "HasValue": false
+        }
+      }
+    ]
+  },
+  "Gpus": [
+    {
+      "Id": "/gpu-amd/0",
+      "Name": "AMD Radeon(TM) Graphics",
+      "Kind": "Integrated",
+      "IsActive": true,
+      "UsagePercent": 0,
+      "TemperatureCelsius": {
+        "Value": 46,
+        "HasValue": true
+      },
+      "PowerWatt": {
+        "Value": 29,
+        "HasValue": true
+      },
+      "ClockMHz": {
+        "Value": 600,
+        "HasValue": true
+      }
+    },
+    {
+      "Id": "/gpu-nvidia/0",
+      "Name": "NVIDIA GeForce RTX 4070",
+      "Kind": "Discrete",
+      "IsActive": true,
+      "UsagePercent": 67.38624,
+      "TemperatureCelsius": {
+        "Value": 58,
+        "HasValue": true
+      },
+      "PowerWatt": {
+        "Value": 127.137,
+        "HasValue": true
+      },
+      "ClockMHz": {
+        "Value": 2790,
+        "HasValue": true
+      }
+    }
+  ],
+  "Memory": {
+    "ModelName": "Memory",
+    "TotalGB": 63.103016,
+    "UsedGB": 27.271381,
+    "AvailableGB": 35.831635,
+    "UsagePercent": 43.21724
+  },
+  "Fps": {
+    "DisplayOutputFps": {
+      "Value": 160,
+      "HasValue": true
+    },
+    "VideoPlaybackFps": {
+      "HasValue": false
+    },
+    "GameFps": {
+      "HasValue": false
+    },
+    "TargetDisplayIndex": 0,
+    "TargetDisplayName": "\\\\.\\DISPLAY1",
+    "ActiveContent": "Game: Borderlands3",
+    "ProviderStatus": "Display=RefreshFallback(No outputs duplicated) | Game=ETW | Game=Borderlands3(GPU(64.9%)) | Hint=RunAsAdmin"
+  },
+  "NetworkAdapters": [
+    {
+      "AdapterId": "{71F46BFF-C5F3-4D99-ABFA-240F5D897849}",
+      "AdapterName": "\u4EE5\u592A\u7F51",
+      "IsUp": true,
+      "IsSelected": true,
+      "UploadMbps": 0.006967871664971563,
+      "DownloadMbps": 0.00656324132222223,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{0AFD3ED9-02C8-0811-124D-1682118B6574}",
+      "AdapterName": "Meta",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0.004588096598293283,
+      "DownloadMbps": 0.003888566175235114,
+      "Type": "Unknown(53)"
+    },
+    {
+      "AdapterId": "{37217669-42DA-4657-A55B-0D995D328250}",
+      "AdapterName": "Tailscale",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Unknown(53)"
+    },
+    {
+      "AdapterId": "{EDD8E975-C661-4DF1-815E-C532840E7BCB}",
+      "AdapterName": "VMware Network Adapter VMnet1",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{9C81ACA8-363F-4966-AA3B-40E9629803DA}",
+      "AdapterName": "VMware Network Adapter VMnet8",
+      "IsUp": true,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    },
+    {
+      "AdapterId": "{332D5EB4-C0BF-4B87-8D78-CDD6728C7B0A}",
+      "AdapterName": "WLAN",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{B4B87843-E6ED-41D7-8932-12CC9DFAF4E3}",
+      "AdapterName": "\u672C\u5730\u8FDE\u63A5* 10",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{9F637C86-C8A0-449C-A5A4-5FA284CD36F9}",
+      "AdapterName": "\u672C\u5730\u8FDE\u63A5* 9",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Wireless80211"
+    },
+    {
+      "AdapterId": "{840C79B2-B3A3-4ACC-A344-A88DACC390E6}",
+      "AdapterName": "\u84DD\u7259\u7F51\u7EDC\u8FDE\u63A5",
+      "IsUp": false,
+      "IsSelected": false,
+      "UploadMbps": 0,
+      "DownloadMbps": 0,
+      "Type": "Ethernet"
+    }
+  ],
+  "ActiveMonitors": [
+    {
+      "Index": 0,
+      "DeviceName": "\\\\.\\DISPLAY1",
+      "FriendlyName": "\\\\.\\DISPLAY1",
+      "Width": 2560,
+      "Height": 1440,
+      "RefreshRate": 160,
+      "IsPrimary": true
+    },
+    {
+      "Index": 1,
+      "DeviceName": "\\\\.\\DISPLAY2",
+      "FriendlyName": "\\\\.\\DISPLAY2",
+      "Width": 1707,
+      "Height": 1067,
+      "RefreshRate": 130,
+      "IsPrimary": false
+    }
+  ],
+  "IsElevated": false,
+  "DataSourceInfo": "LHM \u002B PDH"
+}

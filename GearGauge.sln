@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GearGauge.Core", "GearGauge.Core\GearGauge.Core.csproj", "{AA14715C-A430-4928-89F9-B63933462DB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GearGauge.Hardware", "GearGauge.Hardware\GearGauge.Hardware.csproj", "{17F5F049-E0B6-4B96-86E6-E31A9832673E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GearGauge.Cli", "GearGauge.Cli\GearGauge.Cli.csproj", "{382C7E44-96D9-4333-910D-7049E9007A3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GearGauge.Tests", "GearGauge.Tests\GearGauge.Tests.csproj", "{1151B99E-D124-421A-BBF7-7A626C8E0DD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GearGauge.UI", "GearGauge.UI\GearGauge.UI.csproj", "{5E425032-DF0A-4487-AB49-F8FA8C35C6A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA14715C-A430-4928-89F9-B63933462DB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA14715C-A430-4928-89F9-B63933462DB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA14715C-A430-4928-89F9-B63933462DB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA14715C-A430-4928-89F9-B63933462DB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17F5F049-E0B6-4B96-86E6-E31A9832673E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17F5F049-E0B6-4B96-86E6-E31A9832673E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17F5F049-E0B6-4B96-86E6-E31A9832673E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17F5F049-E0B6-4B96-86E6-E31A9832673E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{382C7E44-96D9-4333-910D-7049E9007A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{382C7E44-96D9-4333-910D-7049E9007A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{382C7E44-96D9-4333-910D-7049E9007A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{382C7E44-96D9-4333-910D-7049E9007A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1151B99E-D124-421A-BBF7-7A626C8E0DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1151B99E-D124-421A-BBF7-7A626C8E0DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1151B99E-D124-421A-BBF7-7A626C8E0DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1151B99E-D124-421A-BBF7-7A626C8E0DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E425032-DF0A-4487-AB49-F8FA8C35C6A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E425032-DF0A-4487-AB49-F8FA8C35C6A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E425032-DF0A-4487-AB49-F8FA8C35C6A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E425032-DF0A-4487-AB49-F8FA8C35C6A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

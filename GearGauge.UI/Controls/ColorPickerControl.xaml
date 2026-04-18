@@ -1,0 +1,78 @@
+<UserControl x:Class="GearGauge.UI.Controls.ColorPickerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="34" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Color preview swatch -->
+        <Border x:Name="PreviewBorder"
+                Grid.Column="0"
+                CornerRadius="6"
+                Height="34"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource InputBorderBrush}"
+                Cursor="Hand"
+                MouseDown="OnSwatchMouseDown">
+            <Border.Background>
+                <SolidColorBrush Color="{Binding Color, ElementName=Root}" />
+            </Border.Background>
+        </Border>
+
+        <!-- Hex input -->
+        <TextBox Grid.Column="1"
+                 Margin="6,0,0,0"
+                 Text="{Binding HexColor, ElementName=Root, UpdateSourceTrigger=LostFocus}"
+                 LostFocus="OnHexLostFocus">
+            <TextBox.Template>
+                <ControlTemplate TargetType="TextBox">
+                    <Border x:Name="border"
+                            Background="{DynamicResource InputBackgroundBrush}"
+                            BorderBrush="{DynamicResource InputBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Height="34"
+                            Padding="10,0"
+                            SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Focusable="False"
+                                      HorizontalScrollBarVisibility="Hidden"
+                                      VerticalScrollBarVisibility="Hidden"
+                                      VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
+
+        <!-- Swatches popup -->
+        <Popup x:Name="SwatchPopup"
+               IsOpen="False"
+               PlacementTarget="{Binding ElementName=PreviewBorder}"
+               Placement="Bottom"
+               AllowsTransparency="True"
+               PopupAnimation="Slide"
+               StaysOpen="True">
+            <Border Background="{DynamicResource CardBackgroundBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="10"
+                    Margin="0,4,0,0">
+                <StackPanel>
+                    <UniformGrid x:Name="SwatchGrid" Columns="8" />
+                </StackPanel>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>..\assets\branding\GearGauge.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GearGauge.Core\GearGauge.Core.csproj" />
+    <ProjectReference Include="..\GearGauge.Hardware\GearGauge.Hardware.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="..\assets\branding\GearGauge-icon-48x48.png" Link="assets\branding\GearGauge-icon-48x48.png" />
+    <Resource Include="..\assets\branding\GearGauge.ico" Link="assets\branding\GearGauge.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
+  </ItemGroup>
+
+</Project>
