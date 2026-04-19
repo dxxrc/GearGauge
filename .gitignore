@@ -26,6 +26,7 @@ bld/
 **/[Aa]rtifacts/*
 *.nuget.props
 *.nuget.targets
+/.dotnet/
 
 ## Visual Studio
 .vs/
@@ -143,3 +144,16 @@ pkginfo
 *.zip
 *.rar
 *.7z
+/.playwright-mcp/
+/publish-test/
+/publish-single/
+/release-build/
+/release-build-fx/
+/release-bundle/
+/release-bundle-fx/
+/fps-sample.jsonl
+/build-diag.log
+/cli-build.log
+/dotnet-test.err.log
+/dotnet-test.out.log
+/release-upload-test.txt
